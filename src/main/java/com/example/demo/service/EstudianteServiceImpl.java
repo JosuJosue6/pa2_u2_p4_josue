@@ -18,4 +18,22 @@ public class EstudianteServiceImpl implements EstudianteService{
 		this.estudianteRepository.insertar(estudiante);
 	}
 
+	@Override
+	public void actualizar(Estudiante estudiante) {
+		// TODO Auto-generated method stub
+		this.estudianteRepository.actualizar(estudiante);
+	}
+
+	@Override
+	public void borrar(String cedula) {
+		// TODO Auto-generated method stub
+		this.estudianteRepository.eliminar(cedula);
+	}
+
+	@Override
+	public Estudiante buscarPorCedula(String cedula) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepository.seleccionarPorCedula(cedula);
+	}
+
 }

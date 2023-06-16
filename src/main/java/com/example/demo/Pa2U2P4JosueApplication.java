@@ -17,8 +17,8 @@ import com.example.demo.service.EstudianteService;
 public class Pa2U2P4JosueApplication implements CommandLineRunner {
 
 	/*@Autowired
-	private EstudianteService estudianteService ;*/
-	@Autowired
+	private EstudianteService estudianteService ;
+	@Autowired*/
 	private CtaBancariaService bancariaService;
 	
 	public static void main(String[] args) {
@@ -45,6 +45,7 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		this.estudianteService.actualizar(estudiante);
 		this.estudianteService.borrar("1720525516");*/
 		
+		/*Taller15************************/
 		CtaBancaria bancaria = new CtaBancaria();
 		bancaria.setCedulaPropietario("1720525516");
 		bancaria.setFechaApertura(LocalDate.now());
@@ -53,6 +54,7 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		bancaria.setTipo("A");
 		
 		this.bancariaService.apertura(bancaria);
+		
 	}
 
 }

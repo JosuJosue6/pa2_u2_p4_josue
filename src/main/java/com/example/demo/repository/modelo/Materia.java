@@ -12,9 +12,9 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="materia")
+@Table(name = "materia")
 public class Materia {
-	
+
 	@Id
 	@GeneratedValue(generator = "seq_materia", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "seq_materia", sequenceName = "seq_materia", allocationSize = 1)
@@ -23,11 +23,11 @@ public class Materia {
 	
 	@Column(name = "mat_nombre")
 	private String nombre;
-
-	@OneToMany(mappedBy = "materia")
-	private List<Matricula> matriculas;
 	
-	//GETTERS Y SETTERS
+	@OneToMany(mappedBy = "materia")
+	private List<Matricula>matriculas;
+
+	//SET Y GET
 	public Integer getId() {
 		return id;
 	}
@@ -43,8 +43,6 @@ public class Materia {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
 
 	public List<Matricula> getMatriculas() {
 		return matriculas;
@@ -56,11 +54,8 @@ public class Materia {
 
 	@Override
 	public String toString() {
-		return "Materia [id=" + id + ", nombre=" + nombre + ", matriculas=" + matriculas + "]";
+		return "Materia [id=" + id + ", nombre=" + nombre + "]";
 	}
-
 	
 	
-	
-
 }

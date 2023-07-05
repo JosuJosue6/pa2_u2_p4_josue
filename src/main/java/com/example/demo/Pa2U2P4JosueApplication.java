@@ -243,9 +243,9 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		
 		alumno1.setMatriculas(matriculasA1);//necesito asignarle al valos a insertar
 		
-		/*materia1.setMatriculas(matriculasA1);
+		materia1.setMatriculas(matriculasA1);
 		materia2.setMatriculas(matriculasA1);
-		materia3.setMatriculas(matriculasA1);*/
+		materia3.setMatriculas(matriculasA1);
 		
 		this.alumnoService.buscar(alumno1);
 		

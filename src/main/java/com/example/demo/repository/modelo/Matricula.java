@@ -14,30 +14,30 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="matricula")
+@Table(name = "matricula")
 public class Matricula {
-	
+
 	@Id
 	@GeneratedValue(generator = "seq_matricula", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "seq_matricula", sequenceName = "seq_matricula", allocationSize = 1)
-	@Column(name = "mtla_id")
+	@SequenceGenerator(name = "seq_matricula", sequenceName = "seq_matricula",allocationSize = 1)
+	@Column(name = "matr_id")
 	private Integer id;
 	
-	@Column(name = "mtla_fecha")
+	@Column(name = "matr_fecha")
 	private LocalDate fecha;
 	
-	@Column(name = "mtla_numero")
+	@Column(name = "matr_numero")
 	private String numero;
 	
-	@ManyToOne(cascade = CascadeType.ALL) //SON LOS HIJOS
-	@JoinColumn(name ="mtla_id_alumno")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "matr_id_alumno")
 	private Alumno alumno;
 	
-	@ManyToOne(cascade = CascadeType.ALL) //SON LOS HIJOS POR ESO PONGO AQUI EL CASCADE
-	@JoinColumn(name = "mtla_id_materia")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "matr_id_materia")
 	private Materia materia;
 
-	//GETTERS Y SETTERS
+	//SET Y GET
 	public Integer getId() {
 		return id;
 	}
@@ -57,8 +57,10 @@ public class Matricula {
 	public String getNumero() {
 		return numero;
 	}
-	
-	
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
 	public Alumno getAlumno() {
 		return alumno;
@@ -76,10 +78,6 @@ public class Matricula {
 		this.materia = materia;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
 	@Override
 	public String toString() {
 		return "Matricula [id=" + id + ", fecha=" + fecha + ", numero=" + numero + ", alumno=" + alumno + ", materia="
@@ -87,6 +85,4 @@ public class Matricula {
 	}
 	
 	
-	
-
 }

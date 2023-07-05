@@ -1,6 +1,9 @@
 package com.example.demo;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +11,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.repository.modelo.Alumno;
 import com.example.demo.repository.modelo.Autor;
 import com.example.demo.repository.modelo.Libro;
+import com.example.demo.repository.modelo.Materia;
+import com.example.demo.repository.modelo.Matricula;
+import com.example.demo.service.AlumnoService;
 import com.example.demo.service.AutorService;
 import com.example.demo.service.HabitacionService;
 import com.example.demo.service.HotelService;
@@ -30,6 +37,9 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 	
 	@Autowired
 	private AutorService autorService;
+	
+	@Autowired
+	private AlumnoService alumnoService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P4JosueApplication.class, args);
@@ -135,7 +145,7 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		System.out.println("\nEliminar hotel");
 		this.habitacionService.borrarPorNumero(2);*/
 		
-		System.out.println("Taller 18 Many to Many");
+		/*System.out.println("Taller 18 Many to Many");
 		Autor autor1 = new Autor();
 		autor1.setApellido("Ocapana");
 		autor1.setNombre("Josue");
@@ -188,7 +198,56 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		
 		this.autorService.agregar(autor1);
 		this.autorService.agregar(autor2);
-		this.autorService.agregar(autor3);
+		this.autorService.agregar(autor3);*/
+		
+		System.out.println("Taller 19: many to many usando one to many y many to one");
+		//ALumnos
+		Alumno alumno1 = new Alumno();
+		alumno1.setNombre("Josue-12");
+		
+		
+		//Materias
+		Materia materia1 = new Materia();
+		materia1.setNombre("PA 1-2");
+		
+		Materia materia2 = new Materia();
+		materia2.setNombre("PA 2-2");
+		
+		Materia materia3 = new Materia();
+		materia3.setNombre("PA 3-2");
+
+		//Matriculas
+		Matricula matricula1 = new Matricula();
+		matricula1.setFecha(LocalDate.of(2023, 12, 12));
+		matricula1.setNumero("1");
+		matricula1.setAlumno(alumno1);
+		matricula1.setMateria(materia1);
+		
+		Matricula matricula2 = new Matricula();
+		matricula2.setFecha(LocalDate.of(2023, 12, 12));
+		matricula2.setNumero("1");
+		matricula2.setAlumno(alumno1);
+		matricula2.setMateria(materia3);
+		
+		Matricula matricula3 = new Matricula();
+		matricula3.setFecha(LocalDate.of(2023, 12, 12));
+		matricula3.setNumero("1");
+		matricula3.setAlumno(alumno1);
+		matricula3.setMateria(materia2);
+		
+		//matriculas del alumno 1
+		List<Matricula> matriculasA1 = new ArrayList<>();
+		matriculasA1.add(matricula1);
+		matriculasA1.add(matricula2);
+		matriculasA1.add(matricula3);
+		
+		alumno1.setMatriculas(matriculasA1);//necesito asignarle al valos a insertar
+		
+		/*materia1.setMatriculas(matriculasA1);
+		materia2.setMatriculas(matriculasA1);
+		materia3.setMatriculas(matriculasA1);*/
+		
+		this.alumnoService.buscar(alumno1);
 		
 		
 	}

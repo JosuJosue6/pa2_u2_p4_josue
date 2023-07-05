@@ -1,6 +1,6 @@
 package com.example.demo.repository.modelo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,7 +24,7 @@ public class Matricula {
 	private Integer id;
 	
 	@Column(name = "mtla_fecha")
-	private LocalDateTime fecha;
+	private LocalDate fecha;
 	
 	@Column(name = "mtla_numero")
 	private String numero;
@@ -46,11 +46,11 @@ public class Matricula {
 		this.id = id;
 	}
 
-	public LocalDateTime getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

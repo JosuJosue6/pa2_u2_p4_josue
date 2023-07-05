@@ -1,19 +1,16 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.repository.modelo.CtaBancaria;
-import com.example.demo.repository.modelo.Estudiante;
-import com.example.demo.repository.modelo.Habitacion;
-import com.example.demo.repository.modelo.Hotel;
-import com.example.demo.service.CtaBancariaService;
-import com.example.demo.service.EstudianteService;
+import com.example.demo.repository.modelo.Autor;
+import com.example.demo.repository.modelo.Libro;
+import com.example.demo.service.AutorService;
 import com.example.demo.service.HabitacionService;
 import com.example.demo.service.HotelService;
 
@@ -30,6 +27,9 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 	
 	@Autowired
 	private HabitacionService habitacionService;
+	
+	@Autowired
+	private AutorService autorService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P4JosueApplication.class, args);
@@ -62,6 +62,7 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		bancaria.setNumero("123456");
 		bancaria.setSaldo(new BigDecimal(1000));
 		bancaria.setTipo("A");
+		
 		//taller 16 creacion one to one ciudadano empleado
 		 
 		this.bancariaService.apertura(bancaria);*/
@@ -69,7 +70,7 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		//*********************************************************************************
 		//******************************************************************************************
 				
-		System.out.println("taller 17 one to many");
+		/*System.out.println("taller 17 one to many");
 		
 		Hotel hotel = new Hotel();
 		
@@ -132,7 +133,62 @@ public class Pa2U2P4JosueApplication implements CommandLineRunner {
 		System.out.println(this.habitacionService.buscarPorNumero(2));
 		
 		System.out.println("\nEliminar hotel");
-		this.habitacionService.borrarPorNumero(2);
+		this.habitacionService.borrarPorNumero(2);*/
+		
+		System.out.println("Taller 18 Many to Many");
+		Autor autor1 = new Autor();
+		autor1.setApellido("Ocapana");
+		autor1.setNombre("Josue");
+		
+		Autor autor2 = new Autor();
+		autor2.setApellido("Ocapana - 2");
+		autor2.setNombre("Josue - 2");
+		
+		Autor autor3 = new Autor();
+		autor3.setApellido("Ocapana-3");
+		autor3.setNombre("Josue-3");
+		
+		Libro libro1 = new Libro();
+		libro1.setEditorial("Editorial 1");
+		libro1.setTitulo("Libro 1");
+		
+		Libro libro2 = new Libro();
+		libro2.setEditorial("Editorial 1");
+		libro2.setTitulo("Libro 1");
+		
+		Libro libro3 = new Libro();
+		libro3.setEditorial("Editorial 1");
+		libro3.setTitulo("Libro 3");
+		
+		//Autor1 escribe 2 libros(1 y 3)
+		Set<Libro> librosAutor1 = new HashSet<>();
+		librosAutor1.add(libro1);
+		librosAutor1.add(libro3);
+		
+		autor1.setLibros(librosAutor1);
+		
+		//autor 2 escribe 1 libro(2)
+		Set<Libro> librosAutor2 = new HashSet<>();
+		librosAutor2.add(libro2);
+		
+		autor2.setLibros(librosAutor2);
+		
+		//autores del libro 1 y 3
+		Set<Autor>autores = new HashSet<>();
+		autores.add(autor1);
+		
+		libro1.setAutores(autores);//autor1
+		libro3.setAutores(autores);//autor1
+		
+		//Autores del libro 2
+		Set<Autor>autores2 = new HashSet<>();
+		autores2.add(autor2);
+
+		libro2.setAutores(autores2);//autor2
+		
+		this.autorService.agregar(autor1);
+		this.autorService.agregar(autor2);
+		this.autorService.agregar(autor3);
 		
 		
 	}
